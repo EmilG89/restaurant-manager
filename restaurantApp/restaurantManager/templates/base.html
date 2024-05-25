@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'restaurantManager/style.css' %}" />
+        <title>Restaurant Manager - {% block title %}{% endblock %}</title>
+        {% block head %}{% endblock %}
+    </head>
+
+    <body>
+
+        <header>
+            <div class="logo">
+                <img src="{% static 'restaurantManager/logo.png' %}" alt="Logo" width="80px" />
+                <h1>Restaurant Manager</h1>
+            </div>
+            <nav class="navbar">
+                <a class="nav-item" href="{% url 'home' %}">Dashboard</a>
+                <a class="nav-item" href="{% url 'ingredients' %}">Ingredients Inventory</a>
+                <a class="nav-item" href="{% url 'menu_items' %}">Menu Items</a>
+                <a class="nav-item" href="{% url 'purchases' %}">Purchase Log</a>
+                {% if user.is_authenticated %}
+                    <a class="nav-item" href="{% url 'logout' %}">Logout</a>
+            </nav>
+            <p style="margin: 5px 5px">Welcome: {{ user.get_username }}</p>
+            {% endif %}
+        </header>
+
+        <main>
+        {% block content %}
+        {% endblock %}
+        </main>
+
+    </body>
+</html>

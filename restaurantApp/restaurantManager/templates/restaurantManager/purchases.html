@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Purchase Log
+{% endblock %}
+
+{% block content %}
+    <h1>Purchase Log</h1>
+    <div style="width: 80%; margin: auto;">
+        <table class="ingredients" style="width: 100%;">
+            <tr>
+                <th>Time</th>
+                <th>Menu item</th>
+                <th>Price EUR</th>
+            </tr>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{ item.time|date:"D, M dS, Y" }} - {{ item.time|time:"H:i:s" }} - {{ item.time|time:"e" }}</td>
+                    <td>{{ item.menu_item }}</td>
+                    <td>€ {{ item.menu_item.price }}</td>
+                    <td style="text-align: center;"><a href="{% url 'update_purchase' item.pk %}">Update</a></td>
+                    <td style="text-align: center;"><a href="{% url 'delete_purchase' item.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% block box %}
+    {% endblock %}
+{% endblock %}

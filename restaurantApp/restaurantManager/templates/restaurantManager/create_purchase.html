@@ -1,0 +1,17 @@
+{% extends 'restaurantManager/menu_items.html' %}
+{% include static %}
+
+{% block title %}
+Purchase
+{% endblock %}
+
+{% block purchase %}
+    <div class="purchaseContainer">
+        <h2>Add to Bill</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Add to bill" />
+        </form>
+    </div>
+{% endblock %}

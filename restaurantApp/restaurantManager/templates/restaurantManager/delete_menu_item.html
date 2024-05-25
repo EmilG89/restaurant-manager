@@ -1,0 +1,18 @@
+{% extends 'restaurantManager/menu_items.html' %}
+{% load static %}
+
+{% block title %}
+Delete
+{% endblock %}
+
+{% block menu %}
+    <div class="container">
+        <h2 style="display: inline;">Delete Menu Item</h2>
+        <a href="{% url 'menu_items' %}" style="float: right;">X</a>
+        <form method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to delete {{ object.name }}?</p>
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+{% endblock %}

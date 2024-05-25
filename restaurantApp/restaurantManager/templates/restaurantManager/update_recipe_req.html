@@ -1,0 +1,17 @@
+{% extends 'restaurantManager/recipe_req.html' %}
+{% include static %}
+
+{% block title %}
+Update
+{% endblock %}
+
+{% block update %}
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" onmouseover="this.style.cursor='pointer'" value="Update" />
+            <button type="button" onmouseover="this.style.cursor='pointer'"><a style="all: unset" href="{% url 'create_recipe_req' object.menu_item.pk %}">Cancel</a></button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Log In
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h3 style="margin: 0 0">Log In</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form style="display: inline-block" method="POST">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Username">
+            <label for="password">Password:</label>
+            <input type="text" name="password" placeholder="Password">
+            <input type="submit" onmouseover="this.style.cursor='pointer'" value="Login">
+        </form>
+        <button><a style="all:unset;" onmouseover="this.style.cursor='pointer'" href="{% url 'register' %}">Register</a></button>
+    </div>
+{% endblock %}

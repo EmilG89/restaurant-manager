@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+    <div style="display: inline-block; width: 100%;">
+        <h1>{{ name }}</h1>
+        <div style="display: block; width: 100%; margin: 10px 0;">
+            <table style="margin: auto;">
+                <tr style="display: inline-block;">
+                    <td>
+                        <h4 style="margin: 0 0; display: inline-block;">Today - {% now 'D, M dS, Y' %}: <span style="color:blue; text-decoration: underline;">Income: {{ money.income }} </span> | <span style="color:orange; text-decoration: underline;">Cost: {{ money.cost }} </span>| <span style="color:green; text-decoration: underline;">Profit: {{ money.profit }}</span> |</h4>
+                    </td>
+                </tr>
+                <tr style="display: inline-block;">
+                    <td>
+                        <h4 style="margin: 0 0; display: inline-block;"> Last 15 days: <span style="color:blue; text-decoration: underline;">Income: {{ money_total.0 }} €</span> | <span style="color:orange; text-decoration: underline;">Cost: {{ money_total.1 }} €</span> | <span style="color:green; text-decoration: underline;">Profit: {{ money_total.2 }} €</span></h4>
+                    </td>
+                </tr>    
+            </table>    
+        </div>
+        <div style="display: block; width: 32%; min-width: 300px; margin-right: 1%; float: left;">
+            <h3 style="margin: 0 0;">Daily money data - last 15 days<label for=""></label></h3>
+            <table class="ingredients" style="width: 100%">
+                <tr>
+                    <th>Date</th>
+                    <th>Income</th>
+                    <th>Cost</th>
+                    <th>Profit</th>
+                </tr>
+                {% for data in daily_data %}
+                    <tr>
+                        <td>{{ data.3 }}</td>
+                        <td>{{ data.0 }}</td>
+                        <td>{{ data.1 }}</td>
+                        <td>{{ data.2 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div style="display: block; width: 32%; min-width: 300px; margin-right: 1%; float: left;">
+            <h3 style="margin: 0 0">Find purchase by time</h3>
+            <form style="margin: 10px 0; width: 100%;" action="{% url 'dashboard' 'time' %}" method="POST">
+                {% csrf_token %}
+                <label for="start_date">Start date:</label>
+                <input type="date" name="start_date" required="True">
+                <label for="start_time">Start time:</label>
+                <input type="time" name="start_time" required="True">
+                <br>
+                <label for="end_date">End date:</label>
+                <input type="date" name="end_date" required="True">
+                <label for="end_time">End time:</label>
+                <input type="time" name="end_time" required="True">
+                <br>
+                <button type="submit" onmouseover="this.style.cursor='pointer'">Search</button>
+            </form>
+            <h3 style="margin: 0 0; font-weight: bold; text-align: center;">{{ table_header }}</h3>
+            <table class="ingredients" style="width:100%">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Day</th>
+                    <th>Item</th>
+                    <th>EUR</th>
+                </tr>
+                {% for purchase in last_purchases %}
+                    <tr>
+                        <td>{{ purchase.time|date:"d.m.y" }}</td>
+                        <td>{{ purchase.time|time:"H:i" }}</td>
+                        <td>{{ purchase.time|date:"D" }}</td>
+                        <td>{{ purchase.menu_item }}</td>
+                        <td>€ {{ purchase.menu_item.price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div style="display: block; width: 32%; min-width: 300px; margin-right: 1%; float: left;">
+            <h3 style="margin: 0 0">Most purchased Menu items</h3>
+            <table class="ingredients" style="width: 100%">
+                <tr>
+                    <th>Item</th>
+                    <th>Purchases</th>
+                </tr>
+                {% for item in purchase_count|dictsortreversed:1|slice:":3" %}
+                    <tr>
+                        <td>{{ item.0 }}</td>
+                        <td>{{ item.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <h3 style="margin: 0 0">Least purchased Menu items</h3>
+            <table class="ingredients" style="width: 100%">
+                <tr>
+                    <th>Item</th>
+                    <th>Purchases</th>
+                </tr>
+                {% for item in purchase_count|dictsort:1|slice:":3" %}
+                    <tr>
+                        <td>{{ item.0 }}</td>
+                        <td>{{ item.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div style="display: block; width: 32%; min-width: 300px; margin-right: 1%; float: left;">
+            <h3 style="margin: 0 0;">Find purchase by Menu item</h3>
+            <form style="margin: 10px 0;" action="{% url 'dashboard' 'item' %}" method="POST">
+                {% csrf_token %}
+                <labeL for="item">Select Item:</labeL>
+                <select name="item">
+                    {% for name in item_name %}
+                    <option name="{{ name.0 }}">{{ name.0 }}</option>
+                    {% endfor %}
+                </select>
+                <button type="input">Search</button>
+            </form>
+            <table class="ingredients" style="width: 100%;">
+                <tr>
+                    <th>date</th>
+                    <th>time</th>
+                    <th>item</th>
+                </tr>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.time|date:"d.m.y"}}</td>
+                        <td>{{item.time|time:"H:i"}}</td>
+                        <td>{{item.menu_item}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

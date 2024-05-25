@@ -1,0 +1,19 @@
+{% extends 'restaurantManager/menu_items.html' %}
+{% load static %}
+
+{% block title %}
+Update
+{% endblock %}
+
+{% block menu %}
+    <div class="container">
+        <h2 style="display: inline;">Update Menu Item</h2>
+        <a href="{% url 'menu_items' %}" style="float: right;">X</a>
+        <p>Details:</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+{% endblock %}

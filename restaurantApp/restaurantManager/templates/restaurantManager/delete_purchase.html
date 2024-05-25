@@ -1,0 +1,17 @@
+{% extends 'restaurantManager/purchases.html' %}
+{% include 'static' %}
+
+{% block head %}
+Delete
+{% endblock %}
+
+{% block box %}
+    <div class="container">
+        <h2 style="display: inline-block">Delete purchase: {{ object.menu_item}} at {{ object.time }}</h2>
+        <p style="float: right"><a href="{% url 'purchases' %}">X</a></p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+{% endblock %}

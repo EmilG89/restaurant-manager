@@ -1,0 +1,43 @@
+{% extends 'restaurantManager/menu_items.html' %}
+{% load static %}
+
+{% block title %}
+Create recipe
+{% endblock %}
+
+{% block menu %}
+    <div class="container">
+
+        <div style="float: left; display:inline; width: 40%;">
+        <h3>Add Ingredients</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add" />
+        </form>
+        </div>
+
+        <div style="display: inline; float:left; width: 50%; text-align: left;">
+            <h1>{{ ingredients.0.menu_item }} Recipe ingredients</h1>
+    
+            <table>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>amount</th>
+                    <th>unit</th>
+                </tr>
+                {% for ingredient in ingredients %}
+                <tr>
+                    <td>{{ ingredient.ingredient }}</td>
+                    <td style="text-align: right;">{{ ingredient.amount }}</td>
+                    <td>{{ ingredient.unit }}</td>
+                    <td><a href="{% url 'update_recipe_req' pk=ingredient.pk pk2=ingredient.menu_item.pk %}">Update</a></td>
+                    <td><a href="{% url 'delete_recipe_req' pk=ingredient.pk pk2=ingredient.menu_item.pk %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <a href="{% url 'menu_items' %}" style="float:right; display: inline;">X</a>
+    </div>
+{% endblock %}
