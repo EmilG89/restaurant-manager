@@ -27,16 +27,16 @@ Dashboard
             <table class="ingredients" style="width: 100%">
                 <tr>
                     <th>Date</th>
-                    <th>Income</th>
-                    <th>Cost</th>
-                    <th>Profit</th>
+                    <th>Income €</th>
+                    <th>Cost €</th>
+                    <th>Profit €</th>
                 </tr>
                 {% for data in daily_data %}
                     <tr>
                         <td>{{ data.3 }}</td>
-                        <td>{{ data.0 }}</td>
-                        <td>{{ data.1 }}</td>
-                        <td>{{ data.2 }}</td>
+                        <td>€ {{ data.0|floatformat:2 }}</td>
+                        <td>€ {{ data.1|floatformat:2 }}</td>
+                        <td>€ {{ data.2|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -72,7 +72,7 @@ Dashboard
                         <td>{{ purchase.time|time:"H:i" }}</td>
                         <td>{{ purchase.time|date:"D" }}</td>
                         <td>{{ purchase.menu_item }}</td>
-                        <td>€ {{ purchase.menu_item.price }}</td>
+                        <td>€ {{ purchase.menu_item.price|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
             </table>

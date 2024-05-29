@@ -99,7 +99,7 @@ main {
 }
 
 input:hover {
-    cursor: pointer;
+    cursor:text;
 }
 
 button:hover {

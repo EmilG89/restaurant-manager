@@ -16,9 +16,9 @@ Log In
         <form style="display: inline-block" method="POST">
             {% csrf_token %}
             <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" placeholder="Username" required>
             <label for="password">Password:</label>
-            <input type="text" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password" required>
             <input type="submit" onmouseover="this.style.cursor='pointer'" value="Login">
         </form>
         <button><a style="all:unset;" onmouseover="this.style.cursor='pointer'" href="{% url 'register' %}">Register</a></button>
