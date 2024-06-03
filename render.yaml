@@ -1,20 +1,20 @@
 databases:
-  - name: mysitedb
+  - name: restaurant-db
     plan: free
-    databaseName: mysite
-    user: mysite
+    databaseName: restaurant_db_ggh2
+    user: restaurant_db_ggh2_user
 
 services:
   - type: web
     plan: free
-    name: mysite
+    name: restaurant_db_ggh2_user
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysitedb
+          name: restaurant_db_ggh2
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
