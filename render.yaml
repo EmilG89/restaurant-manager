@@ -7,7 +7,7 @@ tadatabases:
 services:
   - type: web
     plan: free
-    name: restaurant-manager
+    name: restaurant_db_ggh2
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
