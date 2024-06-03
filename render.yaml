@@ -1,4 +1,4 @@
-tadatabases:
+databases:
   - name: restaurant-db
     plan: free
     databaseName: restaurant_db_ggh2
@@ -7,14 +7,14 @@ tadatabases:
 services:
   - type: web
     plan: free
-    name: restaurant_db_ggh2_user
+    name: restaurant-manager
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: restaurant_db_ggh2
+          name: restaurant-db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
