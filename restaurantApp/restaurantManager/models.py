@@ -43,9 +43,10 @@ class RecipeReq(models.Model):
         ("tbs", "table spoon"),
         ("ml", "mililitres"),
         ("g", "grams"),
-        ("eggs", "eggs")
+        ("eggs", "eggs"),
+        ("bottle", "bottle")
     ]
-    
+
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     amount = models.IntegerField(default=0)
     unit = models.CharField(max_length=10, default="-", choices=UNIT_TYPES)
@@ -62,6 +63,8 @@ class RecipeReq(models.Model):
         elif self.unit == "g":
             return 0.001 * self.amount
         elif self.unit == "eggs":
+            return 1 * self.amount
+        elif self.unit == "bottle":
             return 1 * self.amount
 
 class Purchase(models.Model):

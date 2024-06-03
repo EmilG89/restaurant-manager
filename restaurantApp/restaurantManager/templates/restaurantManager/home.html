@@ -28,7 +28,7 @@ Dashboard
             <td>
             <div class="dashboard-data-box">
                 <h3>Daily money data - last 15 days<label for=""></label></h3>
-                <table class="ingredients" style="width: 100%;">
+                <table class="list" style="width: 100%;">
                     <tr>
                         <th>Date</th>
                         <th>Income €</th>
@@ -63,10 +63,10 @@ Dashboard
                     <label for="end_time">End time:</label>
                     <input type="time" name="end_time" required="True">
                     </p>
-                    <button type="submit" onmouseover="this.style.cursor='pointer'">Search</button>
+                    <input type="submit" value="Search">
                 </form>
                 <h4>{{ table_header }}</h3>
-                <table class="ingredients" style="width:100%;">
+                <table class="list" style="width:100%;">
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
@@ -88,15 +88,15 @@ Dashboard
             </td>
         </tr>
         <tr>
-            <td>
+            <td valign="top">
             <div class="dashboard-data-box">
                 <h3>Most purchased Menu items</h3>
-                <table class="ingredients" style="width: 100%">
+                <table class="list" style="width: 100%">
                     <tr>
                         <th>Item</th>
                         <th>Purchases</th>
                     </tr>
-                    {% for item in purchase_count|dictsortreversed:1|slice:":3" %}
+                    {% for item in purchase_count|dictsortreversed:1|slice:":5" %}
                         <tr>
                             <td>{{ item.0 }}</td>
                             <td>{{ item.1 }}</td>
@@ -105,12 +105,12 @@ Dashboard
                 </table>
                 <br>
                 <h3>Least purchased Menu items</h3>
-                <table class="ingredients" style="width: 100%">
+                <table class="list" style="width: 100%">
                     <tr>
                         <th>Item</th>
                         <th>Purchases</th>
                     </tr>
-                    {% for item in purchase_count|dictsort:1|slice:":3" %}
+                    {% for item in purchase_count|dictsort:1|slice:":5" %}
                         <tr>
                             <td>{{ item.0 }}</td>
                             <td>{{ item.1 }}</td>
@@ -120,7 +120,7 @@ Dashboard
             </div>
             </td>
             <td valign="top">
-            <div class="dashboard-data-box">
+            <div class="dashboard-data-box" style="height: 375px; overflow: auto;">
                 <h3>Find purchase by Menu item</h3>
                 <form style="margin: 10px 0;" action="{% url 'dashboard' 'item' %}" method="POST">
                     {% csrf_token %}
@@ -130,9 +130,9 @@ Dashboard
                         <option name="{{ name.0 }}">{{ name.0 }}</option>
                         {% endfor %}
                     </select>
-                    <button type="input">Search</button>
+                    <input type="submit" value="Search">
                 </form>
-                <table class="ingredients" style="width: 100%;">
+                <table class="list" style="width: 100%;">
                     <tr>
                         <th>date</th>
                         <th>time</th>

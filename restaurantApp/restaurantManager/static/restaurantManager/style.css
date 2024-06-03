@@ -1,3 +1,8 @@
+html {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     background-color: rgb(244, 202, 104);
     margin: 0;
@@ -90,15 +95,15 @@ main {
     padding: 40px 10%;
 }
 
-.ingredients {
+.list {
     width: 100%;
     margin: auto;
     height: auto;
 }
-.ingredients tr:nth-child(even) {
+.list tr:nth-child(even) {
     background-color:rgb(179, 148, 118);
 }
-.ingredients tr:nth-child(odd) {
+.list tr:nth-child(odd) {
     background-color:rgb(246, 115, 115);
 }
 
@@ -121,6 +126,10 @@ main {
     vertical-align: middle;
     padding: 0 5px;
 }
+
+input[type=submit]:hover {
+    cursor: pointer;
+} 
 
 .menu_items {
     width: 50%;
