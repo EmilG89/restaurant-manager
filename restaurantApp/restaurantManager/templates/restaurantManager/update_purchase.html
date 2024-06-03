@@ -8,7 +8,7 @@ Update
 {% block box %}
     <div class="container">
         <h2 style="display: inline-block">Update purchase: {{ object.menu_item}} at {{ object.time }}</h2>
-        <p style="float: right"><a href="{% url 'purchases' %}">X</a></p>
+        <a class="close" href="{% url 'purchases' %}">x</a>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

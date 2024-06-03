@@ -6,36 +6,35 @@ Ingredients
 {% endblock %}
 
 {% block content %}
-    <h1>Ingredients Inventory</h1>
-    <table class="ingredients">
-        <tr>
-            <th>Ingredient</th>
-            <th>Stock</th>
-            <th>Unit</th>
-            <th>Price EUR</th>
-            <th>Stock Value EUR</th>
-        </tr>
-        {% for item in object_list|dictsort:'name' %}
+    <h1>Ingredients Inventory <a style="font-size: 14px; vertical-align: middle;" href="{% url 'create_ingredient' %}">Create New Ingredient</a></h1>
+    <div class="table-box">
+        <table class="ingredients">
             <tr>
-                <td style="width:30%;">{{ item.name }}</td>
-                <td style="width:10%; text-align: right;">{{ item.quantity|floatformat:2 }}</td>
-                <td style="width:10%;">{{ item.unit }}</td>
-                <td style="width:10%;">€ {{ item.price }}</td>
-                <td style="width:20%;">€ {{ item.stock_value|floatformat:2 }}</td>
-                <td style="width:10%; text-align: center;"><a href="{% url 'update_ingredient' item.pk %}">Update</a></td>
-                <td style="width:10%; text-align: center;"><a href="{% url 'delete_ingredient' item.pk %}">Delete</a></td>
+                <th>Ingredient</th>
+                <th>Stock</th>
+                <th>Unit</th>
+                <th>Price EUR</th>
+                <th>Stock Value EUR</th>
             </tr>
-        {% endfor %}
-        <tr>
-            <td></td>
-            <td></td>
-            <td colspan="3" style="text-align: right;">Total stock value: € {{ total_value|floatformat:2 }}</td>
-        </tr>
-    </table>
-    <div style="width: 100%; text-align: center; padding: 20px 0;">
-        <a style="width: 200px" href="{% url 'create_ingredient' %}">Create New Ingredient</a>
-    <div style="width: 100%; text-align: center; padding: 20px 0;"></div>
+            {% for item in ingredients|dictsort:'name' %}
+                <tr>
+                    <td style="width:30%;">{{ item.name }}</td>
+                    <td style="width:10%; text-align: right;">{{ item.quantity|floatformat:2 }}</td>
+                    <td style="width:10%;">{{ item.unit }}</td>
+                    <td style="width:10%;">€ {{ item.price }}</td>
+                    <td style="width:20%;">€ {{ item.stock_value|floatformat:2 }}</td>
+                    <td style="width:10%; text-align: center;"><a href="{% url 'update_ingredient' item.pk %}">Update</a></td>
+                    <td style="width:10%; text-align: center;"><a href="{% url 'delete_ingredient' item.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="text-align: right;">Total stock value: € {{ total_value|floatformat:2 }}</td>
+            </tr>
+        </table>
+    </div>
     {% block ingredient %}
-    {% endblock %} 
+    {% endblock %}
 {% endblock %}
 

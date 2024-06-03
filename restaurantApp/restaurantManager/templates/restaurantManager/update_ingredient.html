@@ -8,7 +8,7 @@ Update
 {% block ingredient %}
     <div class="container">
         <h2 style="display: inline-block;">Update Ingredient</h2>
-        <a href="{% url 'ingredients' %}" style="float: right;">X</a>
+        <a class="close" href="{% url 'ingredients' %}">x</a>
         <p>Details:</p>
         <form method="POST">
             {% csrf_token %}

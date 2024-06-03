@@ -1,13 +1,14 @@
 body {
-    background-color: azure;
+    background-color: rgb(244, 202, 104);
     margin: 0;
 }
 
 header {
-    background-color: azure;
+    background-color: rgb(106, 83, 62);
     height: 150px;
     width: 100%;
     padding: 50px 0 50px 0;
+    box-shadow: 5px 0px 3px black;
 }
 
 .logo {
@@ -25,13 +26,13 @@ header {
     width: auto;
     margin: 0 0;
     margin-top: 50px;
-    background-color: beige;
+    background-color: rgb(106, 83, 62);
     text-align: center;
 }
 
 a:link {
     text-decoration: none;
-    color: blueviolet;
+    color: black;
     background-color: azure;
     border: 1px solid lightgrey;
     border-radius: 5px;
@@ -39,14 +40,14 @@ a:link {
 }
 a:visited {
     text-decoration: none;
-    color: blueviolet;
+    color: black;
     background-color: azure;
     border: 1px solid lightgrey;
     border-radius: 5px;
     padding: 0 10px;
 }
 a:hover {
-    background-color: blueviolet;
+    background-color: rgb(246, 115, 115);
     color: azure;
 }
 .navbar a {
@@ -56,28 +57,49 @@ a:hover {
     font-size: 20px;
 }
 .navbar a:hover {
-    background-color: azure;
-    box-shadow: 3px 0px 6px blueviolet, -3px 0px 6px blueviolet;
+    box-shadow: 3px 0px 6px rgb(246, 115, 115), -3px 0px 6px rgb(246, 115, 115);
+    color: rgb(246, 115, 115);
+}
+a.nav-item {
+    background-color: white;
+    color: black;
+}
+
+.dashboard-data-box {
+    display: inline-block;
+    padding: 5px 5px;
+    width: 80%;
+    min-width: 300px;
+    margin: 20px 10%;
+    box-shadow: 5px 5px 10px black;
+}
+.dashboard-data-box h3, h4{
+    margin: 0 0;
+    font-weight: bold;
+    text-align: center;
+}
+.table-box {
+    width: 80%;
+    min-width: 520px;
+    padding: 5px 5px;
+    margin: auto;
+    box-shadow: 10px 10px 15px black;
 }
 
 main {
     padding: 40px 10%;
-    background-color: beige;
 }
 
 .ingredients {
-    width: 80%;
+    width: 100%;
     margin: auto;
     height: auto;
 }
-.ingredients tr:first-child {
-    background-color: blueviolet;
-}
 .ingredients tr:nth-child(even) {
-    background-color:aliceblue;
+    background-color:rgb(179, 148, 118);
 }
 .ingredients tr:nth-child(odd) {
-    background-color:lightskyblue;
+    background-color:rgb(246, 115, 115);
 }
 
 .container {
@@ -86,11 +108,18 @@ main {
     top: 300px;
     height: auto;
     width: 60%;
-    background-color: azure;
+    background-color: rgb(179, 148, 118);
     padding: 20px 20px;
-    border: 2px solid blueviolet;
-    box-shadow: 5px 5px 10px blueviolet;
+    border: 2px solid rgb(246, 115, 115);
+    box-shadow: 5px 5px 10px black;
     text-align: center;
+}
+
+.close {
+    font-family: Arial;
+    float: right;
+    vertical-align: middle;
+    padding: 0 5px;
 }
 
 .menu_items {

@@ -8,8 +8,8 @@ Update
 {% block menu %}
     <div class="container">
         <h2 style="display: inline;">Update Menu Item</h2>
-        <a href="{% url 'menu_items' %}" style="float: right;">X</a>
-        <p>Details:</p>
+        <a class="close" href="{% url 'menu_items' %}">x</a>
+        <p>{{ object.name }} details:</p>
         <form method="POST">
             {% csrf_token %}
             {{ form }}

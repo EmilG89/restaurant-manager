@@ -8,7 +8,7 @@ Create Menu Item
 {% block menu %}
     <div class="container">
         <h2 style="display:inline;">Create Menu Item</h2>
-        <a href="{% url 'menu_items' %}" style="float:right;">X</a>
+        <a class="close" href="{% url 'menu_items' %}">x</a>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

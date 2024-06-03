@@ -16,6 +16,9 @@ class Ingredient(models.Model):
     quantity = models.FloatField(default=0)
     price = models.FloatField(default=0)
 
+    class Meta:
+        ordering = ['name']
+
     def stock_value(self):
         return self.price * self.quantity
 
@@ -42,7 +45,7 @@ class RecipeReq(models.Model):
         ("g", "grams"),
         ("eggs", "eggs")
     ]
-
+    
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     amount = models.IntegerField(default=0)
     unit = models.CharField(max_length=10, default="-", choices=UNIT_TYPES)

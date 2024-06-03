@@ -12,6 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from datetime import datetime, timedelta
 
+MENU_ITEMS = MenuItem.objects.all()
 
 # Create your views here.
 def login_view(request):
@@ -140,6 +141,7 @@ class IngredientsView(LoginRequiredMixin, ListView):
         context = super().get_context_data()
         ingredients = Ingredient.objects.all()
         ingredients_values = [ingredient.quantity * ingredient.price for ingredient in ingredients]
+        context['ingredients'] = Ingredient.objects.all()
         #use @register to create custom function that can find
         #item by key inside template
         context['total_value'] = sum(ingredients_values)
@@ -155,10 +157,18 @@ class CreateIngredientView(LoginRequiredMixin, CreateView):
 class UpdateIngredientView(LoginRequiredMixin, UpdateView):
     model = Ingredient
     form_class = IngredientForm
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['ingredients'] = Ingredient.objects.all()
+        return context
     template_name = "restaurantManager/update_ingredient.html"
 
 class DeleteIngredientView(LoginRequiredMixin, DeleteView):
     model = Ingredient
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data()
+        context['ingredients'] = Ingredient.objects.all()
+        return context
     template_name = "restaurantManager/delete_ingredient.html"
     success_url = reverse_lazy('ingredients')
 
@@ -167,7 +177,8 @@ class MenuItemsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        context['menu_items'] = RecipeReq.objects.values_list('menu_item', flat=True)
+        context['recipes'] = RecipeReq.objects.values_list('menu_item', flat=True)
+        context['menu_items'] = MenuItem.objects.all()                
         return context
 
     template_name = "restaurantManager/menu_items.html"
@@ -175,15 +186,27 @@ class MenuItemsView(LoginRequiredMixin, ListView):
 class CreateMenuItemView(LoginRequiredMixin, CreateView):
     model = MenuItem
     form_class = MenuItemForm
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['menu_items'] = MENU_ITEMS
+        return context
     template_name = "restaurantManager/create_menu_item.html"
 
 class UpdateMenuItemView(LoginRequiredMixin, UpdateView):
     model = MenuItem
     form_class = MenuItemForm
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['menu_items'] = MENU_ITEMS
+        return context
     template_name = "restaurantManager/update_menu_item.html"
 
 class DeleteMenuItemView(LoginRequiredMixin, DeleteView):
     model = MenuItem
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['menu_items'] = MENU_ITEMS
+        return context
     template_name = "restaurantManager/delete_menu_item.html"
     success_url = reverse_lazy('menu_items')
 
@@ -235,6 +258,7 @@ class PurchasesView(LoginRequiredMixin, ListView):
 class CreatePurchaseView(LoginRequiredMixin, CreateView):
     model = Purchase
     form_class = PurchaseForm
+
     def get(self, request, **kwargs):
         item = MenuItem.objects.get(pk = kwargs.get('pk'))
         req = RecipeReq.objects.filter(menu_item = item.pk)
@@ -244,11 +268,12 @@ class CreatePurchaseView(LoginRequiredMixin, CreateView):
                 messages.info(request, "out of {}".format(i.name))
                 return redirect('menu_items')
             else:
-                i.quantity = i.quantity - ing.converter()
+                i.quantity = round(i.quantity - ing.converter(), 3)
                 i.save()
         b = Purchase(menu_item = item)
         b.save()
         return redirect(reverse_lazy('menu_items'))
+    
     template_name = "restaurantManager/create_purchase.html"
 
 class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
