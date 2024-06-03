@@ -1,4 +1,4 @@
-databases:
+tadatabases:
   - name: restaurant-db
     plan: free
     databaseName: restaurant_db_ggh2
@@ -7,7 +7,7 @@ databases:
 services:
   - type: web
     plan: free
-    name: restaurant_db_ggh2_user
+    name: restaurant-manager
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
