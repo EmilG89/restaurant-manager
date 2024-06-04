@@ -9,7 +9,7 @@ services:
     plan: free
     name: restaurant-manager
     runtime: python
-    buildCommand: "./build.sh"
+    buildCommand: "./restaurantApp/build.sh"
     startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
