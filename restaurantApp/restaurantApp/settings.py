@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'restaurantApp.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com:5432/restaurant_db_ggh2')),
+    'default': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a:5432.frankfurt-postgres.render.com/restaurant_db_ggh2')),
     #'default': {
     #    'ENGINE': 'django.db.backends.postgresql',
     #    'NAME': 'restaurant_db_ggh2',
