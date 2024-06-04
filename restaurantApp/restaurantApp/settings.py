@@ -85,7 +85,7 @@ DATABASES = {
         #'NAME': BASE_DIR / 'db.sqlite3',
         #
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurant_db_ggh2',
+        'NAME': 'restaurant-db',
         'USER': 'restaurant_db_ggh2_user',
         'PASSWORD': 'EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB',
         'HOST': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com/restaurant_db_ggh2')),
