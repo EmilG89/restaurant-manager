@@ -11,7 +11,7 @@ services:
     name: restaurant-manager
     runtime: python
     buildCommand: "./restaurantApp/build.sh"
-    startCommand: "python -m gunicorn restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "python -m gunicorn restaurantAPP.restaurantApp.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
