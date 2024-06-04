@@ -7,6 +7,7 @@ databases:
 services:
   - type: web
     plan: free
+    region: frankfurt
     name: restaurant-manager
     runtime: python
     buildCommand: "./restaurantApp/build.sh"
