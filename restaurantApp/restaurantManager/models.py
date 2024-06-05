@@ -11,10 +11,25 @@ class Ingredient(models.Model):
         ("eggs", "eggs")
     ]
 
+    CATEGORIES = [
+        ('FRESH PRODUCE', 'FRESH PRODUCE'),
+        ('GRAINS', 'GRAINS'),
+        ('MEAT / PROTEIN', 'MEAT / PROTEIN'),
+        ('DAIRY', 'DAIRY'),
+        ('BAKING GOODS', 'BAKING GOODS'),
+        ('FREEZER', 'FREEZER'),
+        ('CANNED / DRIED GOODS', 'CANNED / DRIED GOODS'),
+        ('CONDIMENTS / SPICES', 'CONDIMENTS / SPICES'),
+        ('OILS / VINEGARS', 'OILS / VINEGARS'),
+        ('SNACKS', 'SNACKS'),
+        ('OTHER', 'OTHER')
+    ]
+
     name = models.CharField(unique = True, max_length=30)
     unit = models.CharField(max_length=10, choices=UNIT_TYPES)
     quantity = models.FloatField(default=0)
     price = models.FloatField(default=0)
+    category = models.CharField(max_length=20, choices=CATEGORIES, default='OTHER')
 
     class Meta:
         ordering = ['name']

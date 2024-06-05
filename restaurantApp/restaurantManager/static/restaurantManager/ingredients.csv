@@ -1,0 +1,99 @@
+Name;Category;Unit;Price
+Apples;FRESH PRODUCE;kg;0.8
+Bananas;FRESH PRODUCE;kg;1
+Strawberries;FRESH PRODUCE;kg;4
+Avocados;FRESH PRODUCE;kg;2
+Bell Peppers;FRESH PRODUCE;kg;1.5
+Carrots;FRESH PRODUCE;kg;0.5
+Broccoli;FRESH PRODUCE;kg;0.8
+Garlic;FRESH PRODUCE;kg;0.5
+Lemons / Limes;FRESH PRODUCE;kg;1
+Onion;FRESH PRODUCE;kg;0.8
+Parsley;FRESH PRODUCE;kg;12
+Cilantro;FRESH PRODUCE;kg;10
+Basil;FRESH PRODUCE;kg;12
+Potatoes;FRESH PRODUCE;kg;0.5
+Spinach;FRESH PRODUCE;kg;11
+Tomatoes;FRESH PRODUCE;kg;0.8
+Breadcrumbs;GRAINS;kg;1
+Pasta;GRAINS;kg;1.5
+Quinoa;GRAINS;kg;2
+Rice;GRAINS;kg;1
+Sandwich Bread;GRAINS;kg;0.7
+Tortillas;GRAINS;kg;0.9
+Chicken;MEAT / PROTEIN;kg;4
+Eggs;MEAT / PROTEIN;eggs;1
+Ground Beef;MEAT / PROTEIN;kg;10
+Sliced Turkey;MEAT / PROTEIN;kg;12
+Lunch Meat;MEAT / PROTEIN;kg;3
+Salmon;MEAT / PROTEIN;kg;14
+Paltus;MEAT / PROTEIN;kg;12
+Pork;MEAT / PROTEIN;kg;8
+Butter;DAIRY;kg;1.2
+Sliced Cheese;DAIRY;kg;4
+Shredded Cheese;DAIRY;kg;4.6
+Milk;DAIRY;l;1
+Sour Cream;DAIRY;l;1.2
+Greek Yogurt;DAIRY;l;1.4
+Baking powder;BAKING GOODS;kg;1.1
+Baking Soda;BAKING GOODS;kg;1.4
+Granulated Sugar;BAKING GOODS;kg;3
+Brown Sugar;BAKING GOODS;kg;3.4
+Flour;BAKING GOODS;kg;1.2
+Honey;BAKING GOODS;kg;8
+Vanilla Extract;BAKING GOODS;kg;9
+Dry Yeast;BAKING GOODS;kg;2
+Chocolate Chips;BAKING GOODS;kg;4
+Cocoa Powder;BAKING GOODS;kg;4.5
+Powdered Sugar;BAKING GOODS;kg;0.7
+Fruit and Berries mix;FREEZER;kg;2.2
+Frozen Veggies mix;FREEZER;kg;2
+Juice Concentrate;FREEZER;l;2.1
+Pizza;FREEZER;kg;2.4
+Pie Crust;FREEZER;kg;1.8
+Cookie Dough;FREEZER;kg;1.6
+Chicken stock / broth;CANNED / DRIED GOODS;l;3.3
+Salsa;CANNED / DRIED GOODS;kg;3.8
+Diced Tomatoes;CANNED / DRIED GOODS;l;2.8
+Jam / Jelly;CANNED / DRIED GOODS;l;6
+Peanut Butter;CANNED / DRIED GOODS;kg;7
+Pasta Sauce;CANNED / DRIED GOODS;l;4
+Beans;CANNED / DRIED GOODS;kg;3.1
+Tuna;CANNED / DRIED GOODS;kg;5.5
+Green Chiles;CANNED / DRIED GOODS;kg;7
+Canned Veggies;CANNED / DRIED GOODS;kg;3.8
+Black Pepper;CONDIMENTS / SPICES;kg;14
+Chili Powder;CONDIMENTS / SPICES;kg;16
+Cinnamon;CONDIMENTS / SPICES;kg;18
+Crushed Red Pepper;CONDIMENTS / SPICES;kg;20
+Cumin;CONDIMENTS / SPICES;kg;22
+Garlic Powder;CONDIMENTS / SPICES;kg;11
+Ketchup;CONDIMENTS / SPICES;l;6
+Mustard;CONDIMENTS / SPICES;l;7
+Mayo;CONDIMENTS / SPICES;l;7
+Nutmeg;CONDIMENTS / SPICES;kg;8
+Paprika;CONDIMENTS / SPICES;kg;16
+Salt;CONDIMENTS / SPICES;kg;3
+Soy Sauce;CONDIMENTS / SPICES;l;12
+Steak Sauce;CONDIMENTS / SPICES;l;14
+Hot Sauce/Buffalo Sauce;CONDIMENTS / SPICES;l;16
+Salad Dressings;CONDIMENTS / SPICES;l;12
+Apple cider vinegar;OILS / VINEGARS;l;16
+Balsamic vinegar;OILS / VINEGARS;l;17
+Coconut Oil;OILS / VINEGARS;l;19
+Olive Oil;OILS / VINEGARS;l;14
+Vegetable / Canola Oil;OILS / VINEGARS;l;11
+Red Wine Vinegar;OILS / VINEGARS;l;15
+White Vinegar;OILS / VINEGARS;l;15
+Cooking Wine;OILS / VINEGARS;l;6
+White Wine Vinegar;OILS / VINEGARS;l;10.5
+Crackers;SNACKS;kg;9.6
+Nuts;SNACKS;kg;17
+Quick Oats;SNACKS;kg;4
+Popcorn;SNACKS;kg;11
+Tortilla Chips;SNACKS;kg;6
+Cereal;SNACKS;kg;5
+CocaCola;DRINKS;bottle;0.8
+Water;DRINKS;bottle;0.4
+Tea;DRINKS;kg;24
+Coffee;DRINKS;kg;12
