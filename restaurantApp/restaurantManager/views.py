@@ -13,6 +13,7 @@ from django.urls import reverse, reverse_lazy
 from datetime import datetime, timedelta
 
 MENU_ITEMS = MenuItem.objects.all()
+INGREDIENTS = Ingredient.objects.all()
 
 # Create your views here.
 def login_view(request):
@@ -139,9 +140,8 @@ class IngredientsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        ingredients = Ingredient.objects.all()
-        ingredients_values = [ingredient.quantity * ingredient.price for ingredient in ingredients]
-        context['ingredients'] = Ingredient.objects.all()
+        ingredients_values = [ingredient.quantity * ingredient.price for ingredient in INGREDIENTS]
+        context['ingredients'] = INGREDIENTS
         #use @register to create custom function that can find
         #item by key inside template
         context['total_value'] = sum(ingredients_values)
@@ -159,7 +159,7 @@ class UpdateIngredientView(LoginRequiredMixin, UpdateView):
     form_class = IngredientForm
     def get_context_data(self):
         context = super().get_context_data()
-        context['ingredients'] = Ingredient.objects.all()
+        context['ingredients'] = INGREDIENTS
         return context
     template_name = "restaurantManager/update_ingredient.html"
 
@@ -167,7 +167,7 @@ class DeleteIngredientView(LoginRequiredMixin, DeleteView):
     model = Ingredient
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
-        context['ingredients'] = Ingredient.objects.all()
+        context['ingredients'] = INGREDIENTS
         return context
     template_name = "restaurantManager/delete_ingredient.html"
     success_url = reverse_lazy('ingredients')
@@ -178,7 +178,7 @@ class MenuItemsView(LoginRequiredMixin, ListView):
     def get_context_data(self):
         context = super().get_context_data()
         context['recipes'] = RecipeReq.objects.values_list('menu_item', flat=True)
-        context['menu_items'] = MenuItem.objects.all()                
+        context['menu_items'] = MENU_ITEMS           
         return context
 
     template_name = "restaurantManager/menu_items.html"
