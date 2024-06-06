@@ -14,6 +14,14 @@ from datetime import datetime, timedelta
 
 MENU_ITEMS = MenuItem.objects.all()
 INGREDIENTS = Ingredient.objects.all()
+def update_ingr():
+    global INGREDIENTS
+    INGREDIENTS = Ingredient.objects.all()
+    return INGREDIENTS
+def update_menu():
+    global MENU_ITEMS
+    MENU_ITEMS = MenuItem.objects.all()
+    return MENU_ITEMS
 
 # Create your views here.
 def login_view(request):
@@ -137,9 +145,9 @@ def home(request, **kwargs):
 
 class IngredientsView(LoginRequiredMixin, ListView):
     model = Ingredient
-
     def get_context_data(self):
         context = super().get_context_data()
+        update_ingr()
         ingredients_values = [ingredient.quantity * ingredient.price for ingredient in INGREDIENTS]
         context['ingredients'] = INGREDIENTS
         #use @register to create custom function that can find
@@ -152,6 +160,10 @@ class IngredientsView(LoginRequiredMixin, ListView):
 class CreateIngredientView(LoginRequiredMixin, CreateView):
     model = Ingredient
     form_class = IngredientForm
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['ingredients'] = INGREDIENTS
+        return context
     template_name = "restaurantManager/create_ingredient.html"
 
 class UpdateIngredientView(LoginRequiredMixin, UpdateView):
@@ -174,11 +186,11 @@ class DeleteIngredientView(LoginRequiredMixin, DeleteView):
 
 class MenuItemsView(LoginRequiredMixin, ListView):
     model = MenuItem
-
     def get_context_data(self):
         context = super().get_context_data()
+        update_menu()
         context['recipes'] = RecipeReq.objects.values_list('menu_item', flat=True)
-        context['menu_items'] = MENU_ITEMS           
+        context['menu_items'] = MENU_ITEMS
         return context
 
     template_name = "restaurantManager/menu_items.html"
@@ -220,6 +232,7 @@ class CreateRecipeReqView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['menu_items'] = MENU_ITEMS
         context['ingredients'] = RecipeReq.objects.filter(menu_item = self.kwargs.get('pk'))
         context['form'] = RecipeReqForm(initial={'menu_item': self.kwargs.get('pk')})
         return context
@@ -232,6 +245,7 @@ class UpdateRecipeReqView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['menu_items'] = MENU_ITEMS
         context['ingredients'] = RecipeReq.objects.filter(menu_item = self.kwargs.get('pk2'))
         return context
     
@@ -242,6 +256,7 @@ class DeleteRecipeReqView(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['menu_items'] = MENU_ITEMS
         context['ingredients'] = RecipeReq.objects.filter(menu_item = self.kwargs.get('pk2'))
         return context
 
