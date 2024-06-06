@@ -23,7 +23,8 @@ Register
             <input type="password" name="password" placeholder="Password">
             <label for="r_password">Repeat password:</label>
             <input type="password" name="r_password" placeholder="Repeat password">
-            <input type="submit" value="register">
+            <input type="submit" value="Register">
+            <button type="button" onmouseover="this.style.cursor='pointer'"><a style="all: unset" href="{% url 'login' %}">Cancel</a></button>
         </form>
     </div>
 {% endblock %}

@@ -35,6 +35,9 @@ Create recipe
                     <td><a href="{% url 'delete_recipe_req' pk=ingredient.pk pk2=ingredient.menu_item.pk %}">Delete</a></td>
                 </tr>
                 {% endfor %}
+                <tr>
+                    <td><strong>Total Cost: {% with item=ingredients|first %}€ {{ item.menu_item.cost|floatformat:2 }}{% endwith %}</strong></td>
+                </tr>
             </table>
         </div>
 

@@ -233,6 +233,10 @@ class CreateRecipeReqView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu_items'] = MENU_ITEMS
+        item = MenuItem.objects.get(pk = self.kwargs.get('pk'))
+        cost = item.calculate()
+        item.cost = cost
+        item.save()
         context['ingredients'] = RecipeReq.objects.filter(menu_item = self.kwargs.get('pk'))
         context['form'] = RecipeReqForm(initial={'menu_item': self.kwargs.get('pk')})
         return context

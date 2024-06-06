@@ -22,7 +22,7 @@ Ingredients
         {% with item=ingredients|first %}
             {% for table in item.CATEGORIES %}
                 <table class="list">
-                    <caption>{{ table.0 }}</caption>
+                    <caption><strong>{{ table.0 }}</strong></caption>
                     <tr>
                         <th>Ingredient</th>
                         <th>Stock</th>

@@ -46,6 +46,17 @@ class Ingredient(models.Model):
 class MenuItem(models.Model):
     name = models.CharField(unique = True, max_length=30)
     price = models.FloatField(default=0)
+    cost = models.FloatField(default=0)
+
+    class Meta:
+        ordering = ['name']
+
+    def calculate(self):
+        recipe_req = RecipeReq.objects.filter(menu_item__name = self.name)
+        item_cost = 0
+        for ingredient in recipe_req:
+            item_cost += ingredient.converter() * ingredient.ingredient.price
+        return item_cost
 
     def get_absolute_url(self):
         return "/menu_items"
@@ -63,7 +74,7 @@ class RecipeReq(models.Model):
     ]
 
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    amount = models.IntegerField(default=0)
+    amount = models.FloatField(default=0)
     unit = models.CharField(max_length=10, default="-", choices=UNIT_TYPES)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     

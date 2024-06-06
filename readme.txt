@@ -63,6 +63,9 @@ that is necessarry for menu item recipes.
     - Recipe Requirements has a method that converts 
     inventrory units like kg and litres to grams, 
     mililitres and table spoons.
+    - Creating Recipe requirements automatically calculates 
+    Menu Item cost considering added ingredient amout and 
+    price.
 
  - View, Create, Update and Delete Purchase.
     - Purchase is created through Menu Item that has
