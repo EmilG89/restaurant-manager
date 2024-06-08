@@ -9,7 +9,7 @@ class IngredientForm(forms.ModelForm):
 class MenuItemForm(forms.ModelForm):
     class Meta:
         model = MenuItem
-        fields = "__all__"
+        fields = ("name", "price")
 
 class RecipeReqForm(forms.ModelForm):
     class Meta:
