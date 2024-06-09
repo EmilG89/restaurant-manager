@@ -293,7 +293,7 @@ class CreatePurchaseView(LoginRequiredMixin, CreateView):
         b.save()
         return redirect(reverse_lazy('menu_items'))
     
-    template_name = "restaurantManager/create_purchase.html"
+    #template_name = "restaurantManager/create_purchase.html"
 
 class UpdatePurchaseView(LoginRequiredMixin, UpdateView):
     model = Purchase

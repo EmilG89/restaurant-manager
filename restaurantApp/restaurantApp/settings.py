@@ -12,16 +12,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+load_dotenv(find_dotenv())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-### Hide secret key
-SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-hwmmvad%9=&vea_cll4=+n17&jq^u6gjc)&aju8d@p4+z0f+kk')
+### SECRET_KEY, DEBUG and ALLOWED HOST settings need to be fixed
+SECRET_KEY = os.environ.get('SECRET_KEY', default=os.environ.get('DEFAULT_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
@@ -78,15 +82,16 @@ WSGI_APPLICATION = 'restaurantApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+#DATABASE data has to be hidden
 DATABASES = {
     #'default': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com/restaurant_db_ggh2')),
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurant_db_ggh2',
-        'USER': 'restaurant_db_ggh2_user',
-        'PASSWORD': 'EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB',
-        'HOST': 'dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com',
-        'PORT': '5432',
+        'ENGINE': os.environ.get('ENGINE'),
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
+        'PORT': os.environ.get('DB_PORT'),
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
         #
