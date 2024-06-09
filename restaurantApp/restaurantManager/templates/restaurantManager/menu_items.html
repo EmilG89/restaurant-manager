@@ -16,9 +16,9 @@ Menu Items
             </tr>
             {% for item in menu_items %}
                 <tr>
-                    <td style="width: 20%;">{{ item.name }}</td>
-                    <td style="width: 15%">€ {{ item.cost|floatformat:2 }}</td>
-                    <td style="width: 15%;">€ {{ item.price|floatformat:2 }}</td>
+                    <td style="width: 30%;">{{ item.name }}</td>
+                    <td style="width: 10%">€ {{ item.cost|floatformat:2 }}</td>
+                    <td style="width: 10%;">€ {{ item.price|floatformat:2 }}</td>
                     <td style="text-align: center;"><a href="{% url 'update_menu_item' item.pk %}">Update</a></td>
                     <td style="text-align: center;"><a href="{% url 'delete_menu_item' item.pk %}">Delete</a></td>
                     {% if item.pk in recipes %}

@@ -73,9 +73,9 @@ a.nav-item {
 .dashboard-data-box {
     display: inline-block;
     padding: 5px 5px;
-    width: 80%;
+    width: 90%;
     min-width: 300px;
-    margin: 20px 10%;
+    margin: 20px 5%;
     box-shadow: 5px 5px 10px black;
 }
 .dashboard-data-box h3, h4{
