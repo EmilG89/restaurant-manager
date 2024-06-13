@@ -12,21 +12,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from datetime import datetime, timedelta
 
-MENU_ITEMS = MenuItem.objects.all()
-INGREDIENTS = Ingredient.objects.all()
-def update_ingr():
-    global INGREDIENTS
-    INGREDIENTS = Ingredient.objects.all()
-    return INGREDIENTS
-def update_menu():
-    global MENU_ITEMS
-    MENU_ITEMS = MenuItem.objects.all()
-    return MENU_ITEMS
-
 # Create your views here.
 def login_view(request):
     context = {
-        "login_view": "active"
+        "login_view": "active",
+        "first_start_message": "This Portfolio project is made by Emil using Python \
+        and Django. Please register or use Username: Emil, Password: emil123 to \
+        access functionality of my application project. Project has pre-uploaded\
+        data, which you can modify or add some new. Feel free to experiment and\
+        leave a review in reviews section. Sincerely, Emil",
     }
 
     if request.method == "POST":
@@ -147,7 +141,8 @@ class IngredientsView(LoginRequiredMixin, ListView):
     model = Ingredient
     def get_context_data(self):
         context = super().get_context_data()
-        update_ingr()
+        global INGREDIENTS
+        INGREDIENTS = Ingredient.objects.all()
         ingredients_values = [ingredient.quantity * ingredient.price for ingredient in INGREDIENTS]
         context['ingredients'] = INGREDIENTS
         #use @register to create custom function that can find
@@ -188,7 +183,8 @@ class MenuItemsView(LoginRequiredMixin, ListView):
     model = MenuItem
     def get_context_data(self):
         context = super().get_context_data()
-        update_menu()
+        global MENU_ITEMS
+        MENU_ITEMS = MenuItem.objects.all()
         context['recipes'] = RecipeReq.objects.values_list('menu_item', flat=True)
         context['menu_items'] = MENU_ITEMS
         return context

@@ -17,7 +17,6 @@ from dotenv import load_dotenv, find_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 load_dotenv(find_dotenv())
 
 # Quick-start development settings - unsuitable for production
@@ -83,20 +82,31 @@ WSGI_APPLICATION = 'restaurantApp.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 #DATABASE data has to be hidden
-DATABASES = {
-    #'default': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com/restaurant_db_ggh2')),
-    'default': {
-        'ENGINE': os.environ.get('ENGINE'),
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': os.environ.get('HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        #
+if 'RENDER' in os.environ:
+    DATABASES = {
+        #'default': dj_database_url.config(default=os.environ.get('postgres://restaurant_db_ggh2_user:EvGXHxTRmn7Znc3AnyCPawjjw5dtfRHB@dpg-cpet2mf109ks73fk7v0g-a.frankfurt-postgres.render.com/restaurant_db_ggh2')),
+        'default': {
+            'ENGINE': os.environ.get('ENGINE'),
+            'NAME': os.environ.get('NAME'),
+            'USER': os.environ.get('USER'),
+            'PASSWORD': os.environ.get('PASSWORD'),
+            'HOST': os.environ.get('HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DEV_ENGINE'),
+            'NAME': os.environ.get('DEV_NAME'),
+            'USER': os.environ.get('DEV_USER'),
+            'PASSWORD': os.environ.get('DEV_PASSWORD'),
+            'HOST': os.environ.get('DEV_HOST'),
+            'PORT': os.environ.get('DEV_DB_PORT'),
+            #'ENGINE': 'django.db.backends.sqlite3',
+            #'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
